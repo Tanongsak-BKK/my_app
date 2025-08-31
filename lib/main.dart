@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:my_app/screen/navbar_screen.dart';
+import 'package:my_app/screen/welcome_screen.dart';
 
 
 
@@ -15,7 +16,7 @@ class MyApp extends StatelessWidget {
       color: const Color.fromARGB(255, 19, 220, 238),
       debugShowCheckedModeBanner: false,
       title: 'Flutter demo app.',
-      home: NavbarScreen(),  
+      home: WelcomeScreen(),  
     );
   }
 }

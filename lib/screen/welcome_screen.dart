@@ -1,117 +1,104 @@
-import 'package:flutter/material.dart'; 
+import 'package:flutter/material.dart';
+import 'package:my_app/screen/navbar_screen.dart';
 
-class WelcomeScreen extends StatelessWidget {
+class WelcomeScreen extends StatefulWidget {
   const WelcomeScreen({super.key});
 
   @override
+  State<WelcomeScreen> createState() => _WelcomeScreenState();
+}
+
+class _WelcomeScreenState extends State<WelcomeScreen>
+    with SingleTickerProviderStateMixin {
+  late final AnimationController _controller;
+
+  @override
+  void initState() {
+    super.initState();
+    _controller = AnimationController(
+      duration: const Duration(seconds: 30), // Slower rotation
+      vsync: this,
+    )..repeat();
+  }
+
+  @override
+  void dispose() {
+    _controller.dispose();
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
-    return Scaffold( 
-      
-      backgroundColor: Color.fromARGB(255, 49, 110, 126),
-
-      
-       body: Center(
-         child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          crossAxisAlignment: CrossAxisAlignment.center,
-         
-          children: [
-         
-            //profile 
-            SizedBox(height: 20.0,),
-            CircleAvatar(
-              radius: 55.0,
-              backgroundColor: const Color.fromARGB(255, 255, 255, 255),
-         
-         
-              child: CircleAvatar(
-                radius: 50.0,
-                backgroundImage: AssetImage('lib/images/bkk.jpg'),
-              ),
-            ), 
-
-            //name section
-            SizedBox(height: 10.0,),
-            Text("Tanongsak Phetpila",
-            style: TextStyle(
-              fontSize: 20.0,
-              fontWeight: FontWeight.bold,
-              color: const Color.fromARGB(255, 0, 0, 0),
+    return Scaffold(
+      body: Stack(
+        children: [
+          Positioned.fill(
+            child: Image.asset(
+              'lib/images/spider-man.jpg', // Replace with your background image path
+              fit: BoxFit.cover,
             ),
+          ),
+          Container(
+            width: double.infinity,
+            height: double.infinity,
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                const SizedBox(height: 250), // Top spacing
+                // Rotating circular photo in the center
+                AnimatedBuilder(
+                  animation: _controller,
+                  child: CircleAvatar(
+                    radius: 150,
+                    backgroundImage: AssetImage('lib/images/spiderman-icon.jpg'),
+                  ),
+                  builder: (context, child) {
+                    return Transform.rotate(
+                      angle: -_controller.value * 2 * 3.1415926535, // Negative for left rotation
+                      child: child,
+                    );
+                  },
+                ),
+                Padding(
+                  padding: const EdgeInsets.only(bottom: 250.0),
+                  child: SizedBox(
+                    width: 200, // Set button width
+                    height: 60, // Set button height
+                    child: ElevatedButton(
+                      style: ElevatedButton.styleFrom(
+                        backgroundColor: const Color.fromARGB(255, 0, 0, 0), // Button background color
+                        foregroundColor: Colors.red, // Text color
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(30), // Rounded corners
+                        ),
+                        elevation: 8, // Shadow
+                      ),
+                      onPressed: () {
+                        Navigator.pushAndRemoveUntil(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => const NavbarScreen(),
+                          ),
+                          (route) => false,
+                        );
+                      },
+                      child: const Text(
+                        'HISTORY',
+                        style: TextStyle(
+                          fontSize: 24, // Font size
+                          fontWeight: FontWeight.bold, // Font weight
+                          color: Colors.red, // Text color
+                          fontFamily: 'Roboto', // Change to your desired font family
+                        ),
+                      ),
+                    ),
+                  ),
+                ),
+              ],
             ),
-
-            SizedBox(height: 5.0,),
-            Text("student at King Mongkut's University of Technology north Bangkok",
-            style: TextStyle(
-              fontSize: 16.0,
-              fontWeight: FontWeight.w500,
-              color: const Color.fromARGB(255, 0, 0, 0),
-              fontStyle: FontStyle.italic
-            ),
-            ),
-
-          
-            //images section
-            SizedBox(height: 20.0,),
-            ClipRRect(
-              borderRadius: BorderRadius.circular(10.0),
-              child: Image.asset('lib/images/237-536x354.jpg',
-              height: 200.0,
-              ),
-            ),
-            
-            //welcome text section
-            SizedBox(height: 20.0,),
-            Text("study in the second year of the Computer Engineering technology",
-            style: TextStyle(
-              fontSize: 24.0,
-              fontWeight: FontWeight.bold,
-              color: const Color.fromARGB(255, 0, 0, 0),
-            ),
-            ),
-          
-            //description section
-            SizedBox(height: 10.0,),
-            Text("This is my first flutter app, I hope you like it.",
-            textAlign: TextAlign.center, 
-            style: TextStyle(
-              fontSize: 16.0,
-              fontWeight: FontWeight.w500,
-              fontStyle: FontStyle.italic,              
-              color: const Color.fromARGB(255, 0, 0, 0),
-            ),
-            ),
-
-
-            //button section
-            SizedBox(height: 20.0,),
-            ElevatedButton(
-              style: ElevatedButton.styleFrom(
-                backgroundColor: const Color.fromARGB(255, 0, 0, 0),
-                padding: EdgeInsets.symmetric(
-                horizontal: 30.0, vertical: 10.0),
-                
-              ),
-              onPressed:(){}, 
-              child: Text(
-                "About me",
-                style: TextStyle(color: const Color.fromARGB(255, 255, 255, 255)),
-                )),
-            SizedBox(height: 12),
-
-              // ✔ indicator
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Icon(Icons.circle, size: 8, color: const Color.fromARGB(255, 0, 0, 0)),
-                ],
-              )
-          ],
-         
-         
-        ),
-       ), 
-      
+          ),
+        ],
+      ),
     );
   }
 }
