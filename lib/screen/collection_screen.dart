@@ -20,7 +20,7 @@ class CollectionScreen extends StatelessWidget {
           // พื้นหลังเดิม
           Positioned.fill(
             child: Image.asset(
-              'lib/images/spider-man.jpg', // พาธภาพพื้นหลัง
+              'lib/images/backonboarding.jpg', // พาธภาพพื้นหลัง
               fit: BoxFit.cover,
             ),
           ),

@@ -62,7 +62,7 @@ class _HomeScreenState extends State<HomeScreen> {
         children: [
           // พื้นหลังรูปเต็มจอ
           Image.asset(
-            'lib/images/spider-man.jpg',
+            'lib/images/backonboarding.jpg',
             fit: BoxFit.cover,
           ),
 

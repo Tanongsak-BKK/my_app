@@ -12,7 +12,7 @@ class ProfileScreen extends StatelessWidget {
           // พื้นหลัง
           Positioned.fill(
             child: Image.asset(
-              'lib/images/spider-man.jpg',
+              'lib/images/backonboarding.jpg',
               fit: BoxFit.cover,
             ),
           ),

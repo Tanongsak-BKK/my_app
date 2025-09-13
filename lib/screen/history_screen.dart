@@ -26,30 +26,11 @@ Peter Parker” เป็นเด็กกำพร้าพ่อเเม่�
         children: [
           // พื้นหลังรูป
           Positioned.fill(
-            child: Image.asset('lib/images/spider-man.jpg', fit: BoxFit.cover),
+            child: Image.asset('lib/images/backonboarding.jpg', fit: BoxFit.cover),
           ),
           // ไล่เฉด + เบลอให้อ่านง่าย
-          Positioned.fill(
-            child: Container(
-              decoration: BoxDecoration(
-                gradient: LinearGradient(
-                  begin: Alignment.topCenter,
-                  end: Alignment.bottomCenter,
-                  colors: [
-                    Colors.black.withOpacity(0.10),
-                    Colors.black.withOpacity(0.25),
-                  ],
-                ),
-              ),
-            ),
-          ),
-          Positioned.fill(
-            child: BackdropFilter(
-              filter: ImageFilter.blur(sigmaX: 3, sigmaY: 3),
-              child: const SizedBox(),
-            ),
-          ),
-
+         
+        
           // เนื้อหา
           Align(
             alignment: Alignment.topCenter,
